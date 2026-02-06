@@ -2,352 +2,189 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Welcome to Our World ❤️</title>
+<title>Welcome to Our World 🌙</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
-  font-family:'Poppins',sans-serif;
-  background:linear-gradient(120deg,#f5e9ec,#f0dce2,#ead1db);
-  color:#3f2a33;
-}
-
-/* Floating soft dots */
-.soft{
-  position:fixed;
-  width:18px;height:18px;
-  background:rgba(200,120,150,.18);
-  border-radius:50%;
-  animation:float 14s linear infinite;
-  z-index:0;
-}
-@keyframes float{
-  from{transform:translateY(110vh);opacity:0}
-  to{transform:translateY(-10vh);opacity:1}
-}
-
-/* Sections */
-.section{
   min-height:100vh;
-  width:100%;
+  font-family:'Poppins',sans-serif;
+  overflow:hidden;
+  color:#f3eaff;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255,255,255,.15), transparent 40%),
+    radial-gradient(circle at 20% 80%, rgba(160,120,255,.25), transparent 45%),
+    linear-gradient(120deg,#0b0f2b,#1a1440,#2a175a);
+}
+
+/* stars */
+.star{
+  position:absolute;
+  width:2px;height:2px;
+  background:white;
+  border-radius:50%;
+  opacity:.8;
+  animation:twinkle 3s infinite ease-in-out alternate;
+}
+@keyframes twinkle{
+  from{opacity:.3}
+  to{opacity:1}
+}
+
+/* moon */
+.moon{
+  position:absolute;
+  top:8%;
+  right:12%;
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  background:radial-gradient(circle at 30% 30%, #fff, #dcd6ff);
+  box-shadow:0 0 80px rgba(220,214,255,.6);
+}
+
+/* wrapper */
+.wrapper{
+  min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:40px 16px;
+  padding:40px 20px;
+  position:relative;
 }
 
-/* INTRO */
-#intro{overflow-y:auto}
-
-.intro-card{
-  width:100%;
+/* glass card */
+.intro{
   max-width:900px;
-  background:rgba(255,255,255,.85);
-  backdrop-filter:blur(12px);
-  border-radius:36px;
-  padding:50px 28px;
-  box-shadow:0 30px 70px rgba(0,0,0,.25);
-  animation:introFade 1.6s ease;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(18px);
+  border-radius:40px;
+  padding:60px 50px;
+  box-shadow:0 40px 120px rgba(0,0,0,.6);
+  animation:fadeUp 2.2s ease;
 }
-@keyframes introFade{
-  from{opacity:0;transform:translateY(20px)}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(40px)}
   to{opacity:1;transform:translateY(0)}
 }
 
-.intro-illustration{
-  display:flex;
-  justify-content:center;
-  margin-bottom:30px;
-}
-.intro-illustration svg{
-  width:160px;
-  stroke:#7b1e3a;
-  stroke-width:3;
-  fill:none;
-  stroke-linecap:round;
-  animation:breathe 4s ease-in-out infinite;
-  opacity:.7;
-}
-@keyframes breathe{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.05)}
-}
-
-.intro-welcome{
-  text-align:center;
+.title{
   font-family:'Playfair Display',serif;
-  font-size:clamp(2em,6vw,3em);
+  font-size:clamp(2.6em,6vw,3.4em);
+  text-align:center;
   margin-bottom:14px;
-  color:#5a1f35;
 }
 
-.intro-date{
+.date{
   text-align:center;
   letter-spacing:4px;
-  font-size:.85em;
-  color:#9b4a6a;
-  margin-bottom:22px;
+  opacity:.8;
+  margin-bottom:30px;
 }
 
-.intro-text{
-  font-size:clamp(1.05em,3.5vw,1.3em);
-  line-height:1.9;
-  white-space:pre-line;
-}
-
-/* MAIN */
-#main{display:none}
-
-.card{
-  width:100%;
-  max-width:900px;
-  background:rgba(255,255,255,.88);
-  backdrop-filter:blur(12px);
-  border-radius:36px;
-  padding:50px 28px;
-  box-shadow:0 30px 70px rgba(0,0,0,.22);
-  animation:enter 1.5s ease;
-}
-@keyframes enter{
-  from{opacity:0;transform:translateY(30px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-.day{
-  letter-spacing:3px;
-  font-size:.85em;
-  text-transform:uppercase;
-  color:#9b4a6a;
-  margin-bottom:10px;
-}
-
-h1{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(2em,6vw,3em);
-  margin-bottom:22px;
-  color:#5a1f35;
-}
-
-.message{
-  font-size:clamp(1.05em,3.5vw,1.3em);
-  line-height:2;
-  white-space:pre-line;
-}
-
-.shayari{
-  margin-top:30px;
-  padding-left:16px;
-  border-left:3px solid #c05a7a;
-  font-style:italic;
-  opacity:.85;
-}
-
-.signature{
-  margin-top:40px;
-  text-align:right;
-  font-size:1.05em;
-  color:#5a1f35;
-}
-
-/* Walking together animation */
+/* walking couple */
 .walk-wrap{
-  position:fixed;
-  bottom:20px;
-  left:-40%;
-  width:300px;
-  opacity:.35;
-  animation:walkAcross 28s linear infinite;
-  z-index:0;
+  position:relative;
+  height:140px;
+  margin-bottom:30px;
+  overflow:hidden;
 }
+
 .walk{
-  width:300px;height:120px;
+  position:absolute;
+  left:-40%;
+  width:260px;
+  animation:walk 18s linear infinite;
 }
-.walk circle,.walk line{
-  stroke:#7b1e3a;
-  stroke-width:3;
-  fill:none;
-  stroke-linecap:round;
-}
-@keyframes walkAcross{
+
+@keyframes walk{
   from{left:-40%}
   to{left:110%}
 }
 
-/* Popup */
-#popup{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.55);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:1000;
-  padding:20px;
+.walk circle,.walk line,.walk path{
+  stroke:#f3eaff;
+  stroke-width:3;
+  fill:none;
+  stroke-linecap:round;
 }
-.popup-card{
-  width:100%;
-  max-width:420px;
-  background:white;
-  padding:36px 28px;
-  border-radius:28px;
-  text-align:center;
-  animation:pop 1s ease;
+
+/* text */
+.text{
+  font-size:clamp(1.1em,3.5vw,1.35em);
+  line-height:2;
+  white-space:pre-line;
 }
-@keyframes pop{
-  from{transform:scale(.8);opacity:0}
-  to{transform:scale(1);opacity:1}
-}
-button{
-  margin-top:24px;
-  padding:12px 30px;
-  border:none;
-  border-radius:30px;
-  background:#c05a7a;
-  color:white;
-  font-size:1em;
-}
+
+/* stars generate */
 </style>
 </head>
 
 <body>
 
+<div class="moon"></div>
+
 <script>
-for(let i=0;i<16;i++){
+for(let i=0;i<60;i++){
   const s=document.createElement("div");
-  s.className="soft";
+  s.className="star";
   s.style.left=Math.random()*100+"vw";
-  s.style.animationDuration=(9+Math.random()*9)+"s";
+  s.style.top=Math.random()*100+"vh";
+  s.style.animationDuration=(2+Math.random()*3)+"s";
   document.body.appendChild(s);
 }
 </script>
 
-<!-- INTRO -->
-<div class="section" id="intro">
-  <div class="intro-card">
+<div class="wrapper">
+  <div class="intro">
 
-    <div class="intro-illustration">
-      <svg viewBox="0 0 200 120">
-        <circle cx="70" cy="35" r="8"/>
-        <line x1="70" y1="43" x2="70" y2="80"/>
-        <line x1="70" y1="55" x2="55" y2="70"/>
-        <line x1="70" y1="55" x2="85" y2="70"/>
-        <circle cx="110" cy="35" r="8"/>
-        <line x1="110" y1="43" x2="110" y2="80"/>
-        <line x1="110" y1="55" x2="95" y2="70"/>
-        <line x1="110" y1="55" x2="125" y2="70"/>
+    <div class="walk-wrap">
+      <svg class="walk" viewBox="0 0 260 140">
+        <!-- boy -->
+        <circle cx="90" cy="40" r="10"/>
+        <line x1="90" y1="50" x2="90" y2="90"/>
+        <line x1="90" y1="65" x2="70" y2="85"/>
+        <line x1="90" y1="65" x2="110" y2="85"/>
+        <line x1="90" y1="90" x2="78" y2="130"/>
+        <line x1="90" y1="90" x2="102" y2="130"/>
+
+        <!-- girl -->
+        <circle cx="150" cy="40" r="10"/>
+        <path d="M140 40 q10 -16 20 0"/>
+        <line x1="150" y1="50" x2="150" y2="88"/>
+        <line x1="150" y1="65" x2="130" y2="85"/>
+        <line x1="150" y1="65" x2="170" y2="85"/>
+        <line x1="150" y1="88" x2="132" y2="130"/>
+        <line x1="150" y1="88" x2="168" y2="130"/>
       </svg>
     </div>
 
-    <div class="intro-welcome">Welcome to Our World</div>
-    <div class="intro-date">27 • FEB • 2025</div>
+    <div class="title">Welcome to Our World</div>
+    <div class="date">27 • FEB • 2025</div>
 
-    <div class="intro-text">
+    <div class="text">
 docu,
 
-kuch log zindagi me dheere se aate hain,
-par unke aane ke baad
-sab kuch permanent ho jaata hai.
+raat shor nahi karti,
+bas saath rehti hai.
+
+Aur shayad isi liye
+tumhari presence
+meri zindagi ko itna sukoon deti hai.
 
 27 February 2025
-wo din tha jab tum meri life me aayi,
-aur cheezein sirf achhi nahi,
-clear ho gayi.
-
-Ye duniya perfect nahi hai,
-par agar tum saath ho,
-toh ye duniya kaafi hai.
+sirf ek din nahi,
+wo pal tha jab
+main akela chalna chhod kar
+saath chalne laga.
     </div>
+
   </div>
 </div>
-
-<!-- MAIN -->
-<div class="section" id="main">
-  <div class="card">
-    <div class="day" id="day"></div>
-    <h1 id="title"></h1>
-    <div class="message" id="msg"></div>
-    <div class="shayari" id="shayari"></div>
-    <div class="signature">— mumu</div>
-  </div>
-</div>
-
-<!-- Walking -->
-<div class="walk-wrap">
-  <svg class="walk" viewBox="0 0 300 120">
-    <circle cx="60" cy="30" r="10"/>
-    <line x1="60" y1="40" x2="60" y2="75"/>
-    <line x1="60" y1="50" x2="45" y2="65"/>
-    <line x1="60" y1="50" x2="75" y2="65"/>
-    <line x1="60" y1="75" x2="50" y2="100"/>
-    <line x1="60" y1="75" x2="70" y2="100"/>
-    <circle cx="120" cy="30" r="10"/>
-    <line x1="120" y1="40" x2="120" y2="75"/>
-    <line x1="120" y1="50" x2="105" y2="65"/>
-    <line x1="120" y1="50" x2="135" y2="65"/>
-    <line x1="120" y1="75" x2="110" y2="100"/>
-    <line x1="120" y1="75" x2="130" y2="100"/>
-  </svg>
-</div>
-
-<!-- POPUP -->
-<div id="popup">
-  <div class="popup-card">
-    <h2>❤️ My Life Partner ❤️</h2>
-    <p style="margin-top:16px;line-height:1.8">
-      docu,<br><br>
-      main tumse perfect hone ka wada nahi karta,<br>
-      main saath chalne ka wada karta hoon.<br><br>
-      Tum meri zimmedaari ho.
-    </p>
-    <button onclick="document.getElementById('popup').style.display='none'">I Feel It</button>
-  </div>
-</div>
-
-<script>
-setTimeout(()=>{
-  intro.style.display="none";
-  main.style.display="flex";
-},15000);
-
-const days={
- "02-14":{
-  day:"Valentine’s Day",
-  title:"My Forever",
-  msg:`tum sirf meri Valentine nahi ho,
-tum meri planning ho,
-mera future ho.`,
-  sh:`Tum meri zindagi ka
-permanent faisla ho.`
- }
-};
-
-const today=new Date();
-const key=String(today.getMonth()+1).padStart(2,"0")+"-"+String(today.getDate()).padStart(2,"0");
-
-if(days[key]){
-  day.textContent=days[key].day;
-  title.textContent=days[key].title;
-  msg.textContent=days[key].msg;
-  shayari.textContent=days[key].sh;
-}else{
-  day.textContent="Everyday";
-  title.textContent="Always You";
-  msg.textContent=`27 February 2025 ke baad
-meri life ke saare din
-tumhare saath jude hue hain.`;
-  shayari.textContent=`Tum meri zindagi ka
-permanent faisla ho.`;
-}
-
-if(key==="02-14"){
-  setTimeout(()=>popup.style.display="flex",8000);
-}
-</script>
 
 </body>
 </html>
