@@ -20,7 +20,6 @@ body{
   overflow-x:hidden;
 }
 
-/* vignette */
 body::after{
   content:'';
   position:fixed;
@@ -32,8 +31,7 @@ body::after{
 /* stars */
 .star{
   position:fixed;
-  width:2px;
-  height:2px;
+  width:2px;height:2px;
   background:white;
   border-radius:50%;
   opacity:.35;
@@ -44,8 +42,7 @@ body::after{
   position:fixed;
   top:8%;
   right:12%;
-  width:120px;
-  height:120px;
+  width:120px;height:120px;
   border-radius:50%;
   background:radial-gradient(circle at 30% 30%, #fff, #cfd9ff);
   box-shadow:0 0 40px rgba(220,230,255,.6);
@@ -70,7 +67,7 @@ body::after{
   box-shadow:0 30px 90px rgba(0,0,0,.6);
 }
 
-/* walking together */
+/* walking */
 .walk-wrap{
   position:relative;
   height:120px;
@@ -89,9 +86,7 @@ body::after{
   65%{left:35%}
   100%{left:110%}
 }
-.walk circle,
-.walk line,
-.walk path{
+.walk circle,.walk line,.walk path{
   stroke:#eef2ff;
   stroke-width:3;
   fill:none;
@@ -138,7 +133,6 @@ body::after{
   opacity:.85;
 }
 
-/* responsive */
 @media(max-width:600px){
   .moon{width:90px;height:90px}
   .card{padding:40px 22px}
@@ -165,7 +159,6 @@ for(let i=0;i<80;i++){
 
     <div class="walk-wrap">
       <svg class="walk" viewBox="0 0 260 140">
-        <!-- boy -->
         <circle cx="90" cy="40" r="10"/>
         <line x1="90" y1="50" x2="90" y2="90"/>
         <line x1="90" y1="65" x2="70" y2="85"/>
@@ -173,7 +166,6 @@ for(let i=0;i<80;i++){
         <line x1="90" y1="90" x2="78" y2="130"/>
         <line x1="90" y1="90" x2="102" y2="130"/>
 
-        <!-- girl -->
         <circle cx="150" cy="40" r="10"/>
         <path d="M140 40 q10 -16 20 0"/>
         <line x1="150" y1="50" x2="150" y2="88"/>
@@ -185,9 +177,9 @@ for(let i=0;i<80;i++){
     </div>
 
     <div class="title">DOCU — MY WORLD</div>
-    <div class="subtitle">Where my heart feels at home.</div>
+    <div class="subtitle" id="subtitle">Where my heart feels at home.</div>
 
-    <div class="message">
+    <div class="message" id="message">
 docu,
 
 tum meri zindagi ka
@@ -219,7 +211,7 @@ meri khushi ho,
 aur meri duniya ho.
     </div>
 
-    <div class="shayari">
+    <div class="shayari" id="shayari">
 Mohabbat shor nahi karti,
 wo chup-chaap
 dil me ghar bana leti hai.
@@ -232,6 +224,29 @@ mere dil me rehti ho.
 
   </div>
 </div>
+
+<script>
+/* ===== VALENTINE WEEK OVERRIDE ===== */
+const contentByDate = {
+  "02-07":{ sub:"Rose Day", msg:`docu,\n\naaj phool dene ka din hai,\npar tumhari muskurahat\nhi meri favourite rose hai.`, sha:`Phool kuch pal ke liye hote hain,\nehsaas zindagi bhar ke.`},
+  "02-08":{ sub:"Propose Day", msg:`docu,\n\nmain tumhare saath\nrehna chahta hoon —\nbilkul sach ke saath.`, sha:`Izhaar shabd nahi,\nniyat maangta hai.`},
+  "02-09":{ sub:"Chocolate Day", msg:`docu,\n\ntumhari baaton ki warmth\nhar din ko sweet bana deti hai.`, sha:`Mithaas saath hone se aati hai.`},
+  "02-10":{ sub:"Teddy Day", msg:`docu,\n\ntum mere liye comfort ho.`, sha:`Sukoon ko shape nahi chahiye.`},
+  "02-11":{ sub:"Promise Day", msg:`docu,\n\nmain honestly tumhare saath rahunga.`, sha:`Vaade niyat se nibhaye jaate hain.`},
+  "02-12":{ sub:"Hug Day", msg:`docu,\n\nkabhi kabhi paas hona\nkaafi hota hai.`, sha:`Sukoon baahon tak aa jaata hai.`},
+  "02-13":{ sub:"Kiss Day", msg:`docu,\n\ncare aur closeness\nbina lafzon ke.`, sha:`Ehsaas chup-chaap gehre ho jaate hain.`},
+  "02-14":{ sub:"Valentine’s Day", msg:`docu,\n\ntum meri choice ho.\nmeri duniya ho.`, sha:`Mohabbat roz saath chalti hai.`}
+};
+
+const today = new Date();
+const key = String(today.getMonth()+1).padStart(2,"0")+"-"+String(today.getDate()).padStart(2,"0");
+
+if(contentByDate[key]){
+  subtitle.textContent = contentByDate[key].sub;
+  message.textContent = contentByDate[key].msg;
+  shayari.textContent = contentByDate[key].sha;
+}
+</script>
 
 </body>
 </html>
