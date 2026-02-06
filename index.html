@@ -12,9 +12,7 @@ body{
   margin:0;
   min-height:100vh;
   font-family:'Poppins','Segoe UI',sans-serif;
-  background:linear-gradient(-45deg,#ffd1dc,#fbc2eb,#f9c5d1,#ffe6f0);
-  background-size:400% 400%;
-  animation:bgMove 12s ease infinite;
+  background:linear-gradient(135deg,#ffe6ef,#f7c1d9);
   display:flex;
   align-items:center;
   justify-content:center;
@@ -22,36 +20,143 @@ body{
   color:#5a2a3c;
 }
 
-/* Background animation */
-@keyframes bgMove{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
-
-/* Floating hearts */
-.heart{
+/* Floating hearts & petals */
+.float{
   position:absolute;
   width:14px;
   height:14px;
-  background:rgba(255,105,180,.5);
+  background:rgba(255,105,180,.55);
   transform:rotate(45deg);
   animation:floatUp linear infinite;
 }
-.heart::before,.heart::after{
+.float::before,.float::after{
   content:'';
   width:14px;height:14px;
   background:inherit;
   border-radius:50%;
   position:absolute;
 }
-.heart::before{top:-7px;left:0}
-.heart::after{left:-7px;top:0}
+.float::before{top:-7px;left:0}
+.float::after{left:-7px;top:0}
 
 @keyframes floatUp{
-  from{transform:translateY(100vh) rotate(45deg);opacity:1}
+  from{transform:translateY(110vh) rotate(45deg);opacity:1}
   to{transform:translateY(-10vh) rotate(45deg);opacity:0}
 }
 
 /* Card */
 .card{
+  background:rgba(255,255,255,.92);
+  padding:38px 30px;
+  border-radius:26px;
+  max-width:420px;
+  text-align:center;
+  box-shadow:0 30px 60px rgba(0,0,0,.2);
+  animation:intro 2s ease forwards, glow 4s ease-in-out infinite;
+  transform:scale(.85);
+  opacity:0;
+  z-index:2;
+}
+
+@keyframes intro{
+  to{opacity:1;transform:scale(1)}
+}
+@keyframes glow{
+  0%,100%{box-shadow:0 30px 60px rgba(0,0,0,.2)}
+  50%{box-shadow:0 30px 80px rgba(255,105,180,.35)}
+}
+
+h1{
+  margin:0;
+  font-size:2em;
+  color:#c0486b;
+}
+
+.heart{
+  display:inline-block;
+  animation:beat 1.4s infinite;
+}
+@keyframes beat{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.25)}
+}
+
+.day{
+  margin:16px 0;
+  font-size:1.05em;
+  font-weight:500;
+}
+
+p{
+  font-size:1.15em;
+  line-height:1.7;
+  min-height:90px;
+}
+
+.footer{
+  margin-top:22px;
+  font-size:.9em;
+  opacity:.75;
+}
+</style>
+</head>
+
+<body>
+
+<script>
+/* Floating hearts generator */
+for(let i=0;i<22;i++){
+  const f=document.createElement("div");
+  f.className="float";
+  f.style.left=Math.random()*100+"vw";
+  f.style.animationDuration=(6+Math.random()*6)+"s";
+  document.body.appendChild(f);
+}
+</script>
+
+<div class="card">
+  <h1>For You <span class="heart">❤️</span></h1>
+  <div class="day" id="dayTitle"></div>
+  <p id="message"></p>
+  <div class="footer">— always yours, mumu</div>
+</div>
+
+<script>
+const valentineWeek={
+ "02-07":{title:"🌹 Rose Day",msg:"docu, ek rose murjha sakta hai… par mumu ka pyaar kabhi kam nahi hoga."},
+ "02-08":{title:"💌 Propose Day",msg:"docu, agar phir se poochna pade… to haan, mumu aaj bhi tumse pyaar karta hai ❤️"},
+ "02-09":{title:"🍫 Chocolate Day",msg:"docu, chocolate sweet hoti hai… par tumhari smile usse bhi zyada."},
+ "02-10":{title:"🧸 Teddy Day",msg:"docu, teddy nahi hoon… par mumu ka dil hamesha tumhare paas hai."},
+ "02-11":{title:"🤍 Promise Day",msg:"docu, mumu promise karta hai — har haal me tumhara saath dega."},
+ "02-12":{title:"🤗 Hug Day",msg:"docu, kaash ye screen hug ban jaaye… mumu tumhe abhi hug karta."},
+ "02-13":{title:"💋 Kiss Day",msg:"docu, aankhen band karo… ye kiss sirf tumhare liye hai."},
+ "02-14":{title:"❤️ Valentine’s Day",msg:"docu, duniya me bahut log hain… par mumu ka dil sirf tumhe jaanta hai."}
+};
+
+const today=new Date();
+const key=String(today.getMonth()+1).padStart(2,"0")+"-"+String(today.getDate()).padStart(2,"0");
+
+let text="";
+if(valentineWeek[key]){
+  document.getElementById("dayTitle").textContent=valentineWeek[key].title;
+  text=valentineWeek[key].msg;
+}else{
+  document.getElementById("dayTitle").textContent="💖 Just Because";
+  text="docu, aaj koi special day nahi… par tum khud special ho. Hamesha.";
+}
+
+/* Typing effect */
+let i=0;
+const msgEl=document.getElementById("message");
+function type(){
+  if(i<text.length){
+    msgEl.textContent+=text.charAt(i);
+    i++;
+    setTimeout(type,40);
+  }
+}
+type();
+</script>
+
+</body>
+</html>
