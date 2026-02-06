@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Docu ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: #5a2a3c;
+  }
+
+  /* Floating hearts */
+  .heart {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: rgba(255, 105, 180, 0.6);
+    transform: rotate(45deg);
+    animation: floatUp 10s linear infinite;
+  }
+
+  .heart::before,
+  .heart::after {
+    content: '';
+    width: 15px;
+    height: 15px;
+    background: inherit;
+    border-radius: 50%;
+    position: absolute;
+  }
+
+  .heart::before {
+    top: -7px;
+    left: 0;
+  }
+
+  .heart::after {
+    left: -7px;
+    top: 0;
+  }
+
+  @keyframes floatUp {
+    from {
+      transform: translateY(100vh) rotate(45deg);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-10vh) rotate(45deg);
+      opacity: 0;
+    }
+  }
+
+  /* Card */
+  .card {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 35px 28px;
+    border-radius: 22px;
+    max-width: 420px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    animation: cardFade 1.6s ease;
+    z-index: 2;
+  }
+
+  @keyframes cardFade {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 1.9em;
+    color: #c0486b;
+  }
+
+  .day {
+    margin: 12px 0 18px;
+    font-size: 1.05em;
+    font-weight: 500;
+  }
+
+  p {
+    font-size: 1.15em;
+    line-height: 1.65;
+    animation: textFade 2.2s ease;
+  }
+
+  @keyframes textFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .footer {
+    margin-top: 22px;
+    font-size: 0.9em;
+    opacity: 0.75;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Hearts generator -->
+<script>
+  for (let i = 0; i < 18; i++) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (6 + Math.random() * 6) + "s";
+    heart.style.opacity = Math.random();
+    document.body.appendChild(heart);
+  }
+</script>
+
+<div class="card">
+  <h1>For You, Docu ❤️</h1>
+  <div class="day" id="dayTitle"></div>
+  <p id="message"></p>
+  <div class="footer">— always yours, mumu</div>
+</div>
+
+<script>
+  const valentineWeek = {
+    "02-07": {
+      title: "🌹 Rose Day",
+      msg: "docu, ek rose murjha sakta hai… par mumu ka pyaar kabhi kam nahi hoga."
+    },
+    "02-08": {
+      title: "💌 Propose Day",
+      msg: "docu, agar phir se poochna pade… to haan, mumu aaj bhi tumse pyaar karta hai ❤️"
+    },
+    "02-09": {
+      title: "🍫 Chocolate Day",
+      msg: "docu, chocolate sweet hoti hai… par tumhari smile usse bhi zyada."
+    },
+    "02-10": {
+      title: "🧸 Teddy Day",
+      msg: "docu, teddy nahi hoon… par mumu ka dil hamesha tumhare paas hai."
+    },
+    "02-11": {
+      title: "🤍 Promise Day",
+      msg: "docu, mumu promise karta hai — har haal me tumhara saath dega."
+    },
+    "02-12": {
+      title: "🤗 Hug Day",
+      msg: "docu, kaash ye screen hug ban jaaye… mumu tumhe abhi hug karta."
+    },
+    "02-13": {
+      title: "💋 Kiss Day",
+      msg: "docu, aankhen band karo… ye kiss sirf tumhare liye hai."
+    },
+    "02-14": {
+      title: "❤️ Valentine’s Day",
+      msg: "docu, duniya me bahut log hain… par mumu ka dil sirf tumhe jaanta hai."
+    }
+  };
+
+  const today = new Date();
+  const key =
+    String(today.getMonth() + 1).padStart(2, "0") +
+    "-" +
+    String(today.getDate()).padStart(2, "0");
+
+  const dayTitle = document.getElementById("dayTitle");
+  const message = document.getElementById("message");
+
+  if (valentineWeek[key]) {
+    dayTitle.textContent = valentineWeek[key].title;
+    message.textContent = valentineWeek[key].msg;
+  } else {
+    dayTitle.textContent = "💖 Just Because";
+    message.textContent = "docu, aaj koi special day nahi… par tum khud special ho. Hamesha.";
+  }
+</script>
+
+</body>
+</html>
