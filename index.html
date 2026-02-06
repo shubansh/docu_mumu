@@ -2,101 +2,117 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For Docu ❤️</title>
+<title>For Docu — My Home ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{box-sizing:border-box}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
-  margin:0;
   min-height:100vh;
   font-family:'Poppins','Segoe UI',sans-serif;
-  background:linear-gradient(135deg,#ffe6ef,#f7c1d9);
+  background:linear-gradient(120deg,#f5e9ec,#f0dce2,#ead1db);
+  overflow:hidden;
+  color:#3f2a33;
+}
+
+/* Soft floating elements */
+.soft{
+  position:absolute;
+  width:22px;height:22px;
+  background:rgba(200,120,150,.15);
+  border-radius:50%;
+  animation:float 12s linear infinite;
+}
+@keyframes float{
+  from{transform:translateY(110vh);opacity:0}
+  to{transform:translateY(-10vh);opacity:1}
+}
+
+/* Layout */
+.wrapper{
+  min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
-  overflow:hidden;
-  color:#5a2a3c;
+  padding:40px 20px;
 }
 
-/* Floating hearts & petals */
-.float{
-  position:absolute;
-  width:14px;
-  height:14px;
-  background:rgba(255,105,180,.55);
-  transform:rotate(45deg);
-  animation:floatUp linear infinite;
-}
-.float::before,.float::after{
-  content:'';
-  width:14px;height:14px;
-  background:inherit;
-  border-radius:50%;
-  position:absolute;
-}
-.float::before{top:-7px;left:0}
-.float::after{left:-7px;top:0}
-
-@keyframes floatUp{
-  from{transform:translateY(110vh) rotate(45deg);opacity:1}
-  to{transform:translateY(-10vh) rotate(45deg);opacity:0}
-}
-
-/* Card */
 .card{
-  background:rgba(255,255,255,.92);
-  padding:38px 30px;
-  border-radius:26px;
-  max-width:420px;
-  text-align:center;
-  box-shadow:0 30px 60px rgba(0,0,0,.2);
-  animation:intro 2s ease forwards, glow 4s ease-in-out infinite;
-  transform:scale(.85);
-  opacity:0;
-  z-index:2;
+  max-width:900px;
+  width:100%;
+  background:rgba(255,255,255,.8);
+  backdrop-filter:blur(12px);
+  border-radius:40px;
+  padding:60px 60px;
+  box-shadow:0 40px 90px rgba(0,0,0,.2);
+  animation:enter 1.8s ease;
 }
 
-@keyframes intro{
-  to{opacity:1;transform:scale(1)}
-}
-@keyframes glow{
-  0%,100%{box-shadow:0 30px 60px rgba(0,0,0,.2)}
-  50%{box-shadow:0 30px 80px rgba(255,105,180,.35)}
-}
-
-h1{
-  margin:0;
-  font-size:2em;
-  color:#c0486b;
-}
-
-.heart{
-  display:inline-block;
-  animation:beat 1.4s infinite;
-}
-@keyframes beat{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.25)}
+@keyframes enter{
+  from{opacity:0;transform:translateY(50px)}
+  to{opacity:1;transform:translateY(0)}
 }
 
 .day{
-  margin:16px 0;
-  font-size:1.05em;
-  font-weight:500;
-}
-
-p{
-  font-size:1.15em;
-  line-height:1.7;
-  min-height:90px;
-}
-
-.footer{
-  margin-top:22px;
+  letter-spacing:3px;
   font-size:.9em;
-  opacity:.75;
+  text-transform:uppercase;
+  color:#9b4a6a;
+  margin-bottom:12px;
+}
+
+h1{
+  font-size:3em;
+  margin-bottom:30px;
+  color:#5a1f35;
+}
+
+.message{
+  font-size:1.35em;
+  line-height:2;
+  white-space:pre-line;
+}
+
+.signature{
+  margin-top:50px;
+  text-align:right;
+  font-size:1.1em;
+  color:#5a1f35;
+}
+
+/* Valentine popup */
+#popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:1000;
+}
+
+.popup-card{
+  background:white;
+  padding:50px;
+  border-radius:36px;
+  max-width:450px;
+  text-align:center;
+  animation:pop 1.2s ease;
+}
+@keyframes pop{
+  from{transform:scale(.7);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+
+button{
+  margin-top:30px;
+  padding:14px 34px;
+  border:none;
+  border-radius:40px;
+  background:#c05a7a;
+  color:white;
+  font-size:1em;
 }
 </style>
 </head>
@@ -104,58 +120,147 @@ p{
 <body>
 
 <script>
-/* Floating hearts generator */
-for(let i=0;i<22;i++){
-  const f=document.createElement("div");
-  f.className="float";
-  f.style.left=Math.random()*100+"vw";
-  f.style.animationDuration=(6+Math.random()*6)+"s";
-  document.body.appendChild(f);
+for(let i=0;i<18;i++){
+  const s=document.createElement("div");
+  s.className="soft";
+  s.style.left=Math.random()*100+"vw";
+  s.style.animationDuration=(8+Math.random()*8)+"s";
+  document.body.appendChild(s);
 }
 </script>
 
-<div class="card">
-  <h1>For You <span class="heart">❤️</span></h1>
-  <div class="day" id="dayTitle"></div>
-  <p id="message"></p>
-  <div class="footer">— always yours, mumu</div>
+<div class="wrapper">
+  <div class="card">
+    <div class="day" id="day"></div>
+    <h1 id="title"></h1>
+    <div class="message" id="msg"></div>
+    <div class="signature">— mumu</div>
+  </div>
+</div>
+
+<div id="popup">
+  <div class="popup-card">
+    <h2>❤️ My Life Partner ❤️</h2>
+    <p style="margin-top:20px;line-height:1.8">
+      docu,<br><br>
+      main tumse perfect hone ka wada nahi karta.<br>
+      main saath rehne ka wada karta hoon.<br><br>
+      Bimaar din ho ya strong din,<br>
+      khushi ho ya zimmedaari,<br>
+      tum akeli nahi rahogi — kabhi bhi.
+    </p>
+    <button onclick="closePop()">I Feel It</button>
+  </div>
 </div>
 
 <script>
-const valentineWeek={
- "02-07":{title:"🌹 Rose Day",msg:"docu, ek rose murjha sakta hai… par mumu ka pyaar kabhi kam nahi hoga."},
- "02-08":{title:"💌 Propose Day",msg:"docu, agar phir se poochna pade… to haan, mumu aaj bhi tumse pyaar karta hai ❤️"},
- "02-09":{title:"🍫 Chocolate Day",msg:"docu, chocolate sweet hoti hai… par tumhari smile usse bhi zyada."},
- "02-10":{title:"🧸 Teddy Day",msg:"docu, teddy nahi hoon… par mumu ka dil hamesha tumhare paas hai."},
- "02-11":{title:"🤍 Promise Day",msg:"docu, mumu promise karta hai — har haal me tumhara saath dega."},
- "02-12":{title:"🤗 Hug Day",msg:"docu, kaash ye screen hug ban jaaye… mumu tumhe abhi hug karta."},
- "02-13":{title:"💋 Kiss Day",msg:"docu, aankhen band karo… ye kiss sirf tumhare liye hai."},
- "02-14":{title:"❤️ Valentine’s Day",msg:"docu, duniya me bahut log hain… par mumu ka dil sirf tumhe jaanta hai."}
+function closePop(){document.getElementById("popup").style.display="none"}
+
+const days={
+ "02-07":{
+  day:"Rose Day",
+  title:"A Home in You",
+  msg:`docu,
+mere liye pyaar sirf feelings nahi hain.
+Pyaar ka matlab hota hai
+roz tumhari fikr karna,
+tumhari safety,
+tumhara future.
+
+Tum meri aadat nahi,
+tum meri zimmedaari ho.`
+ },
+ "02-08":{
+  day:"Propose Day",
+  title:"My Decision",
+  msg:`docu,
+ye koi filmy proposal nahi hai.
+Ye ek decision hai.
+
+Main tumhe choose karta hoon —
+har haal me,
+har din,
+aur aane wale kalon me bhi.`
+ },
+ "02-09":{
+  day:"Chocolate Day",
+  title:"The Calm Sweetness",
+  msg:`docu,
+zindagi me sweetness sirf hasi nahi hoti.
+Kabhi kabhi wo sukoon hota hai
+jo kisi ke saath rehkar milta hai.
+
+Tum wo sukoon ho.`
+ },
+ "02-10":{
+  day:"Teddy Day",
+  title:"My Safe Place",
+  msg:`docu,
+jab duniya bhaari lagti hai,
+main tumhare paas aana chahta hoon.
+Kyuki tum comfort ho,
+tum ghar ho.`
+ },
+ "02-11":{
+  day:"Promise Day",
+  title:"My Quiet Promise",
+  msg:`docu,
+main wada karta hoon —
+main bhaagunga nahi,
+chhodunga nahi,
+aur mushkil waqt me
+sabse pehle tumhare saath khada rahunga.`
+ },
+ "02-12":{
+  day:"Hug Day",
+  title:"Holding Through Life",
+  msg:`docu,
+hug sirf baahon ka nahi hota.
+Kabhi kabhi wo wo hota hai
+jab koi kahe —
+“main hoon, ghabrao mat.”`
+ },
+ "02-13":{
+  day:"Kiss Day",
+  title:"Respect Before Romance",
+  msg:`docu,
+mere liye sabse badi intimacy
+tumhari izzat karna hai,
+tumhari boundaries samajhna hai,
+aur tumhara saath nibhaana hai.`
+ },
+ "02-14":{
+  day:"Valentine’s Day",
+  title:"My Forever",
+  msg:`docu,
+tum sirf meri Valentine nahi ho.
+Tum meri planning ho,
+mera future ho,
+meri wife banne wali ho —
+ye mera sach hai.`
+ }
 };
 
 const today=new Date();
 const key=String(today.getMonth()+1).padStart(2,"0")+"-"+String(today.getDate()).padStart(2,"0");
 
-let text="";
-if(valentineWeek[key]){
-  document.getElementById("dayTitle").textContent=valentineWeek[key].title;
-  text=valentineWeek[key].msg;
+if(days[key]){
+  day.textContent=days[key].day;
+  title.textContent=days[key].title;
+  msg.textContent=days[key].msg;
 }else{
-  document.getElementById("dayTitle").textContent="💖 Just Because";
-  text="docu, aaj koi special day nahi… par tum khud special ho. Hamesha.";
+  day.textContent="Everyday";
+  title.textContent="Always You";
+  msg.textContent=`docu,
+ye page kisi special date ke liye nahi bana.
+Ye isliye bana kyuki
+tum meri zindagi ka
+permanent hissa ho.`;
 }
 
-/* Typing effect */
-let i=0;
-const msgEl=document.getElementById("message");
-function type(){
-  if(i<text.length){
-    msgEl.textContent+=text.charAt(i);
-    i++;
-    setTimeout(type,40);
-  }
+if(key==="02-14"){
+  setTimeout(()=>document.getElementById("popup").style.display="flex",2000);
 }
-type();
 </script>
 
 </body>
