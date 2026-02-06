@@ -2,14 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For Docu — My Home ❤️</title>
+<title>Welcome to Our World ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
-  font-family:'Poppins','Segoe UI',sans-serif;
+  font-family:'Poppins',sans-serif;
   background:linear-gradient(120deg,#f5e9ec,#f0dce2,#ead1db);
   color:#3f2a33;
 }
@@ -39,17 +42,15 @@ body{
 }
 
 /* INTRO */
-#intro{
-  overflow-y:auto;
-}
+#intro{overflow-y:auto}
 
 .intro-card{
   width:100%;
   max-width:900px;
-  background:rgba(255,255,255,.8);
+  background:rgba(255,255,255,.85);
   backdrop-filter:blur(12px);
-  border-radius:32px;
-  padding:48px 28px;
+  border-radius:36px;
+  padding:50px 28px;
   box-shadow:0 30px 70px rgba(0,0,0,.25);
   animation:introFade 1.6s ease;
 }
@@ -58,19 +59,39 @@ body{
   to{opacity:1;transform:translateY(0)}
 }
 
+.intro-illustration{
+  display:flex;
+  justify-content:center;
+  margin-bottom:30px;
+}
+.intro-illustration svg{
+  width:160px;
+  stroke:#7b1e3a;
+  stroke-width:3;
+  fill:none;
+  stroke-linecap:round;
+  animation:breathe 4s ease-in-out infinite;
+  opacity:.7;
+}
+@keyframes breathe{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.05)}
+}
+
+.intro-welcome{
+  text-align:center;
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2em,6vw,3em);
+  margin-bottom:14px;
+  color:#5a1f35;
+}
+
 .intro-date{
   text-align:center;
   letter-spacing:4px;
   font-size:.85em;
   color:#9b4a6a;
-  margin-bottom:18px;
-}
-
-.intro-title{
-  text-align:center;
-  font-size:clamp(2em,6vw,3em);
-  color:#5a1f35;
-  margin-bottom:28px;
+  margin-bottom:22px;
 }
 
 .intro-text{
@@ -80,17 +101,15 @@ body{
 }
 
 /* MAIN */
-#main{
-  display:none;
-}
+#main{display:none}
 
 .card{
   width:100%;
   max-width:900px;
-  background:rgba(255,255,255,.82);
+  background:rgba(255,255,255,.88);
   backdrop-filter:blur(12px);
-  border-radius:32px;
-  padding:48px 28px;
+  border-radius:36px;
+  padding:50px 28px;
   box-shadow:0 30px 70px rgba(0,0,0,.22);
   animation:enter 1.5s ease;
 }
@@ -108,8 +127,9 @@ body{
 }
 
 h1{
+  font-family:'Playfair Display',serif;
   font-size:clamp(2em,6vw,3em);
-  margin-bottom:26px;
+  margin-bottom:22px;
   color:#5a1f35;
 }
 
@@ -119,6 +139,14 @@ h1{
   white-space:pre-line;
 }
 
+.shayari{
+  margin-top:30px;
+  padding-left:16px;
+  border-left:3px solid #c05a7a;
+  font-style:italic;
+  opacity:.85;
+}
+
 .signature{
   margin-top:40px;
   text-align:right;
@@ -126,7 +154,31 @@ h1{
   color:#5a1f35;
 }
 
-/* Valentine popup */
+/* Walking together animation */
+.walk-wrap{
+  position:fixed;
+  bottom:20px;
+  left:-40%;
+  width:300px;
+  opacity:.35;
+  animation:walkAcross 28s linear infinite;
+  z-index:0;
+}
+.walk{
+  width:300px;height:120px;
+}
+.walk circle,.walk line{
+  stroke:#7b1e3a;
+  stroke-width:3;
+  fill:none;
+  stroke-linecap:round;
+}
+@keyframes walkAcross{
+  from{left:-40%}
+  to{left:110%}
+}
+
+/* Popup */
 #popup{
   position:fixed;
   inset:0;
@@ -137,7 +189,6 @@ h1{
   z-index:1000;
   padding:20px;
 }
-
 .popup-card{
   width:100%;
   max-width:420px;
@@ -151,7 +202,6 @@ h1{
   from{transform:scale(.8);opacity:0}
   to{transform:scale(1);opacity:1}
 }
-
 button{
   margin-top:24px;
   padding:12px 30px;
@@ -179,8 +229,23 @@ for(let i=0;i<16;i++){
 <!-- INTRO -->
 <div class="section" id="intro">
   <div class="intro-card">
+
+    <div class="intro-illustration">
+      <svg viewBox="0 0 200 120">
+        <circle cx="70" cy="35" r="8"/>
+        <line x1="70" y1="43" x2="70" y2="80"/>
+        <line x1="70" y1="55" x2="55" y2="70"/>
+        <line x1="70" y1="55" x2="85" y2="70"/>
+        <circle cx="110" cy="35" r="8"/>
+        <line x1="110" y1="43" x2="110" y2="80"/>
+        <line x1="110" y1="55" x2="95" y2="70"/>
+        <line x1="110" y1="55" x2="125" y2="70"/>
+      </svg>
+    </div>
+
+    <div class="intro-welcome">Welcome to Our World</div>
     <div class="intro-date">27 • FEB • 2025</div>
-    <div class="intro-title">The Day My Life Changed</div>
+
     <div class="intro-text">
 docu,
 
@@ -189,27 +254,44 @@ par unke aane ke baad
 sab kuch permanent ho jaata hai.
 
 27 February 2025
-sirf ek date nahi hai,
-ye wo din hai
-jab tum meri life me aayi,
-aur cheezein clear ho gayi.
+wo din tha jab tum meri life me aayi,
+aur cheezein sirf achhi nahi,
+clear ho gayi.
 
-Ye page tumhe impress karne ke liye nahi,
-ye tumhe ye yaad dilane ke liye hai
-ke tum meri kahani ka
-sabse strong hissa ho.
+Ye duniya perfect nahi hai,
+par agar tum saath ho,
+toh ye duniya kaafi hai.
     </div>
   </div>
 </div>
 
-<!-- MAIN DAILY -->
+<!-- MAIN -->
 <div class="section" id="main">
   <div class="card">
     <div class="day" id="day"></div>
     <h1 id="title"></h1>
     <div class="message" id="msg"></div>
+    <div class="shayari" id="shayari"></div>
     <div class="signature">— mumu</div>
   </div>
+</div>
+
+<!-- Walking -->
+<div class="walk-wrap">
+  <svg class="walk" viewBox="0 0 300 120">
+    <circle cx="60" cy="30" r="10"/>
+    <line x1="60" y1="40" x2="60" y2="75"/>
+    <line x1="60" y1="50" x2="45" y2="65"/>
+    <line x1="60" y1="50" x2="75" y2="65"/>
+    <line x1="60" y1="75" x2="50" y2="100"/>
+    <line x1="60" y1="75" x2="70" y2="100"/>
+    <circle cx="120" cy="30" r="10"/>
+    <line x1="120" y1="40" x2="120" y2="75"/>
+    <line x1="120" y1="50" x2="105" y2="65"/>
+    <line x1="120" y1="50" x2="135" y2="65"/>
+    <line x1="120" y1="75" x2="110" y2="100"/>
+    <line x1="120" y1="75" x2="130" y2="100"/>
+  </svg>
 </div>
 
 <!-- POPUP -->
@@ -218,34 +300,29 @@ sabse strong hissa ho.
     <h2>❤️ My Life Partner ❤️</h2>
     <p style="margin-top:16px;line-height:1.8">
       docu,<br><br>
-      main perfect hone ka wada nahi karta,<br>
+      main tumse perfect hone ka wada nahi karta,<br>
       main saath chalne ka wada karta hoon.<br><br>
       Tum meri zimmedaari ho.
     </p>
-    <button onclick="closePop()">I Feel It</button>
+    <button onclick="document.getElementById('popup').style.display='none'">I Feel It</button>
   </div>
 </div>
 
 <script>
-function closePop(){
-  document.getElementById("popup").style.display="none";
-}
-
-/* Auto intro -> main */
 setTimeout(()=>{
-  document.getElementById("intro").style.display="none";
-  document.getElementById("main").style.display="flex";
+  intro.style.display="none";
+  main.style.display="flex";
 },15000);
 
-/* Daily content */
 const days={
  "02-14":{
   day:"Valentine’s Day",
   title:"My Forever",
-  msg:`docu,
-tum meri Valentine nahi ho,
-tum meri aadat nahi ho,
-tum meri zindagi ka plan ho.`
+  msg:`tum sirf meri Valentine nahi ho,
+tum meri planning ho,
+mera future ho.`,
+  sh:`Tum meri zindagi ka
+permanent faisla ho.`
  }
 };
 
@@ -256,20 +333,21 @@ if(days[key]){
   day.textContent=days[key].day;
   title.textContent=days[key].title;
   msg.textContent=days[key].msg;
+  shayari.textContent=days[key].sh;
 }else{
   day.textContent="Everyday";
   title.textContent="Always You";
-  msg.textContent=`docu,
-27 February 2025 ke baad
+  msg.textContent=`27 February 2025 ke baad
 meri life ke saare din
 tumhare saath jude hue hain.`;
+  shayari.textContent=`Tum meri zindagi ka
+permanent faisla ho.`;
 }
 
 if(key==="02-14"){
-  setTimeout(()=>document.getElementById("popup").style.display="flex",8000);
+  setTimeout(()=>popup.style.display="flex",8000);
 }
 </script>
 
 </body>
 </html>
-
