@@ -6,156 +6,52 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-  * { box-sizing: border-box; }
+*{box-sizing:border-box}
 
-  body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: 'Poppins', 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #ffe6ef, #f7c1d9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    color: #5a2a3c;
-  }
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:'Poppins','Segoe UI',sans-serif;
+  background:linear-gradient(-45deg,#ffd1dc,#fbc2eb,#f9c5d1,#ffe6f0);
+  background-size:400% 400%;
+  animation:bgMove 12s ease infinite;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  color:#5a2a3c;
+}
 
-  /* Floating hearts */
-  .heart {
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    background: rgba(255, 105, 180, 0.5);
-    transform: rotate(45deg);
-    animation: floatUp 10s linear infinite;
-  }
+/* Background animation */
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
 
-  .heart::before,
-  .heart::after {
-    content: '';
-    width: 14px;
-    height: 14px;
-    background: inherit;
-    border-radius: 50%;
-    position: absolute;
-  }
+/* Floating hearts */
+.heart{
+  position:absolute;
+  width:14px;
+  height:14px;
+  background:rgba(255,105,180,.5);
+  transform:rotate(45deg);
+  animation:floatUp linear infinite;
+}
+.heart::before,.heart::after{
+  content:'';
+  width:14px;height:14px;
+  background:inherit;
+  border-radius:50%;
+  position:absolute;
+}
+.heart::before{top:-7px;left:0}
+.heart::after{left:-7px;top:0}
 
-  .heart::before { top: -7px; left: 0; }
-  .heart::after { left: -7px; top: 0; }
+@keyframes floatUp{
+  from{transform:translateY(100vh) rotate(45deg);opacity:1}
+  to{transform:translateY(-10vh) rotate(45deg);opacity:0}
+}
 
-  @keyframes floatUp {
-    from { transform: translateY(100vh) rotate(45deg); opacity: 1; }
-    to   { transform: translateY(-10vh) rotate(45deg); opacity: 0; }
-  }
-
-  /* Card intro animation */
-  .card {
-    background: rgba(255,255,255,0.9);
-    padding: 36px 28px;
-    border-radius: 24px;
-    max-width: 420px;
-    text-align: center;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.18);
-    animation: intro 1.8s ease forwards;
-    transform: scale(0.9);
-    opacity: 0;
-    z-index: 2;
-  }
-
-  @keyframes intro {
-    0%   { opacity: 0; transform: scale(0.85) translateY(30px); }
-    100% { opacity: 1; transform: scale(1) translateY(0); }
-  }
-
-  h1 {
-    margin: 0;
-    font-size: 1.9em;
-    color: #c0486b;
-  }
-
-  .heart-icon {
-    display: inline-block;
-    animation: beat 1.5s ease infinite;
-  }
-
-  @keyframes beat {
-    0%, 100% { transform: scale(1); }
-    50%      { transform: scale(1.15); }
-  }
-
-  .day {
-    margin: 14px 0 18px;
-    font-size: 1.05em;
-    font-weight: 500;
-  }
-
-  p {
-    font-size: 1.15em;
-    line-height: 1.7;
-    animation: textFade 2.2s ease;
-  }
-
-  @keyframes textFade {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-
-  .footer {
-    margin-top: 22px;
-    font-size: 0.9em;
-    opacity: 0.75;
-  }
-</style>
-</head>
-
-<body>
-
-<script>
-  for (let i = 0; i < 18; i++) {
-    const h = document.createElement("div");
-    h.className = "heart";
-    h.style.left = Math.random() * 100 + "vw";
-    h.style.animationDuration = (6 + Math.random() * 6) + "s";
-    document.body.appendChild(h);
-  }
-</script>
-
-<div class="card">
-  <h1>For You <span class="heart-icon">❤️</span></h1>
-  <div class="day" id="dayTitle"></div>
-  <p id="message"></p>
-  <div class="footer">— always yours, mumu</div>
-</div>
-
-<script>
-  const valentineWeek = {
-    "02-07": { title: "🌹 Rose Day", msg: "docu, ek rose murjha sakta hai… par mumu ka pyaar kabhi kam nahi hoga." },
-    "02-08": { title: "💌 Propose Day", msg: "docu, agar phir se poochna pade… to haan, mumu aaj bhi tumse pyaar karta hai ❤️" },
-    "02-09": { title: "🍫 Chocolate Day", msg: "docu, chocolate sweet hoti hai… par tumhari smile usse bhi zyada." },
-    "02-10": { title: "🧸 Teddy Day", msg: "docu, teddy nahi hoon… par mumu ka dil hamesha tumhare paas hai." },
-    "02-11": { title: "🤍 Promise Day", msg: "docu, mumu promise karta hai — har haal me tumhara saath dega." },
-    "02-12": { title: "🤗 Hug Day", msg: "docu, kaash ye screen hug ban jaaye… mumu tumhe abhi hug karta." },
-    "02-13": { title: "💋 Kiss Day", msg: "docu, aankhen band karo… ye kiss sirf tumhare liye hai." },
-    "02-14": { title: "❤️ Valentine’s Day", msg: "docu, duniya me bahut log hain… par mumu ka dil sirf tumhe jaanta hai." }
-  };
-
-  const today = new Date();
-  const key =
-    String(today.getMonth() + 1).padStart(2, "0") +
-    "-" +
-    String(today.getDate()).padStart(2, "0");
-
-  const dayTitle = document.getElementById("dayTitle");
-  const message = document.getElementById("message");
-
-  if (valentineWeek[key]) {
-    dayTitle.textContent = valentineWeek[key].title;
-    message.textContent = valentineWeek[key].msg;
-  } else {
-    dayTitle.textContent = "💖 Just Because";
-    message.textContent = "docu, aaj koi special day nahi… par tum khud special ho. Hamesha.";
-  }
-</script>
-
-</body>
-</html>
+/* Card */
+.card{
