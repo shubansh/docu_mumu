@@ -19,7 +19,6 @@ body{
     linear-gradient(180deg,#070a1a,#0c1433,#0b1230,#070a1a);
   overflow-x:hidden;
 }
-
 body::after{
   content:'';
   position:fixed;
@@ -56,7 +55,6 @@ body::after{
   justify-content:center;
   padding:40px 18px;
 }
-
 .card{
   width:100%;
   max-width:820px;
@@ -67,7 +65,7 @@ body::after{
   box-shadow:0 30px 90px rgba(0,0,0,.6);
 }
 
-/* walking */
+/* walking couple */
 .walk-wrap{
   position:relative;
   height:120px;
@@ -102,20 +100,17 @@ body::after{
   text-transform:uppercase;
   margin-bottom:10px;
 }
-
 .subtitle{
   text-align:center;
   letter-spacing:2px;
   opacity:.75;
   margin-bottom:26px;
 }
-
 .message{
   font-size:clamp(1.05em,3.5vw,1.25em);
   line-height:1.9;
   white-space:pre-line;
 }
-
 .shayari{
   margin-top:28px;
   padding-left:16px;
@@ -124,7 +119,6 @@ body::after{
   font-size:1.5em;
   opacity:.9;
 }
-
 .signature{
   margin-top:36px;
   text-align:right;
@@ -177,74 +171,158 @@ for(let i=0;i<80;i++){
     </div>
 
     <div class="title">DOCU — MY WORLD</div>
-    <div class="subtitle" id="subtitle">Where my heart feels at home.</div>
-
-    <div class="message" id="message">
-docu,
-
-tum meri zindagi ka
-sabse khoobsurat hissa ho,
-aur ye baat main
-kisi khaas din par nahi,
-dil se maanta hoon.
-
-Tumhari muskurahat,
-tumhari baatein,
-aur tumhara hona —
-ye sab milkar
-meri duniya ko
-thoda aur pyara bana dete hain.
-
-Jab main tumhare baare me sochta hoon,
-toh koi confusion nahi hota,
-koi doubt nahi hota.
-Bas ek simple sa ehsaas hota hai —
-ke main tumhare saath rehna chahta hoon.
-
-Main tumse wada karta hoon
-ke pyaar sirf lafzon me nahi,
-apni har chhoti-badi koshish me
-dikhane ki koshish karunga.
-
-Tum meri choice ho,
-meri khushi ho,
-aur meri duniya ho.
-    </div>
-
-    <div class="shayari" id="shayari">
-Mohabbat shor nahi karti,
-wo chup-chaap
-dil me ghar bana leti hai.
-
-Tum waise hi
-mere dil me rehti ho.
-    </div>
-
+    <div class="subtitle" id="subtitle"></div>
+    <div class="message" id="message"></div>
+    <div class="shayari" id="shayari"></div>
     <div class="signature">— mumu</div>
 
   </div>
 </div>
 
 <script>
-/* ===== VALENTINE WEEK OVERRIDE ===== */
-const contentByDate = {
-  "02-07":{ sub:"Rose Day", msg:`docu,\n\naaj phool dene ka din hai,\npar tumhari muskurahat\nhi meri favourite rose hai.`, sha:`Phool kuch pal ke liye hote hain,\nehsaas zindagi bhar ke.`},
-  "02-08":{ sub:"Propose Day", msg:`docu,\n\nmain tumhare saath\nrehna chahta hoon —\nbilkul sach ke saath.`, sha:`Izhaar shabd nahi,\nniyat maangta hai.`},
-  "02-09":{ sub:"Chocolate Day", msg:`docu,\n\ntumhari baaton ki warmth\nhar din ko sweet bana deti hai.`, sha:`Mithaas saath hone se aati hai.`},
-  "02-10":{ sub:"Teddy Day", msg:`docu,\n\ntum mere liye comfort ho.`, sha:`Sukoon ko shape nahi chahiye.`},
-  "02-11":{ sub:"Promise Day", msg:`docu,\n\nmain honestly tumhare saath rahunga.`, sha:`Vaade niyat se nibhaye jaate hain.`},
-  "02-12":{ sub:"Hug Day", msg:`docu,\n\nkabhi kabhi paas hona\nkaafi hota hai.`, sha:`Sukoon baahon tak aa jaata hai.`},
-  "02-13":{ sub:"Kiss Day", msg:`docu,\n\ncare aur closeness\nbina lafzon ke.`, sha:`Ehsaas chup-chaap gehre ho jaate hain.`},
-  "02-14":{ sub:"Valentine’s Day", msg:`docu,\n\ntum meri choice ho.\nmeri duniya ho.`, sha:`Mohabbat roz saath chalti hai.`}
+/* ===== CONTENT SYSTEM ===== */
+
+const normalContent = {
+  subtitle: "Where my heart feels calm.",
+  message: `docu,
+
+I don’t love you loudly.
+I love you sincerely.
+
+Tumhari presence meri life me
+kisi excitement ki tarah nahi,
+balki ek stability ki tarah aayi hai —
+jo dheere-dheere
+sab kuch apni jagah le aati hai.
+
+Main tumhare saath
+perfect moments nahi,
+real moments chahta hoon.
+
+Bas saath.
+Bas tum.`,
+  shayari: `Mohabbat ko proof ki zarurat nahi hoti,
+wo bas mehsoos hoti hai.`
 };
 
-const today = new Date();
-const key = String(today.getMonth()+1).padStart(2,"0")+"-"+String(today.getDate()).padStart(2,"0");
+const valentineWeek = {
+  "02-07": {
+    subtitle:"Rose Day",
+    message:`docu,
 
-if(contentByDate[key]){
-  subtitle.textContent = contentByDate[key].sub;
-  message.textContent = contentByDate[key].msg;
-  shayari.textContent = contentByDate[key].sha;
+Aaj rose dene ka din hai,
+par jo feeling tumhari ek smile se aati hai,
+wo kisi flower se match nahi hoti.
+
+You make things bloom,
+without trying.`,
+    shayari:`Kuch phool haathon me nahi,
+dil me khilte hain.`
+  },
+  "02-08": {
+    subtitle:"Propose Day",
+    message:`docu,
+
+This is not a proposal,
+this is a choice.
+
+Roz tumhe choose karna,
+bina pressure,
+bina drama —
+sirf dil se.`,
+    shayari:`Faisle jab dil se ho,
+toh shabd khud kam pad jaate hain.`
+  },
+  "02-09": {
+    subtitle:"Chocolate Day",
+    message:`docu,
+
+Sweet things remind me of you.
+Not because you are sweet,
+but because you make everything
+feel lighter.`,
+    shayari:`Kuch mithaas saath rehne se aati hai.`
+  },
+  "02-10": {
+    subtitle:"Teddy Day",
+    message:`docu,
+
+Comfort is rare.
+And with you,
+comfort feels natural.
+
+Jaise sab theek ho,
+sirf paas hone se.`,
+    shayari:`Sukoon aksar shabd nahi hota.`
+  },
+  "02-11": {
+    subtitle:"Promise Day",
+    message:`docu,
+
+I won’t promise perfection.
+I promise honesty.
+
+Jo hoon,
+jaise hoon,
+tumhare saath.`,
+    shayari:`Sacchai ke saath chalna
+hi sabse bada vaada hota hai.`
+  },
+  "02-12": {
+    subtitle:"Hug Day",
+    message:`docu,
+
+Some days don’t need words.
+They need closeness.
+
+Tumhare paas hona,
+waisa hi lagta hai.`,
+    shayari:`Baahon ka ehsaas
+seedha dil tak jaata hai.`
+  },
+  "02-13": {
+    subtitle:"Kiss Day",
+    message:`docu,
+
+This day is not about a kiss.
+It’s about that moment
+when everything feels right,
+without explanation.`,
+    shayari:`Kuch lamhe
+chup-chaap hi gehre ho jaate hain.`
+  },
+  "02-14": {
+    subtitle:"Valentine’s Day",
+    message:`docu,
+
+You are not my Valentine.
+You are my constant.
+
+And loving you
+is the easiest choice
+I’ve ever made.`,
+    shayari:`Mohabbat ek din nahi hoti,
+wo saath chalti hai.`
+  }
+};
+
+/* ===== DATE LOGIC ===== */
+const today = new Date();
+// const today = new Date("2026-02-14"); // test mode
+
+const key =
+  String(today.getMonth()+1).padStart(2,"0") +
+  "-" +
+  String(today.getDate()).padStart(2,"0");
+
+if(valentineWeek[key]){
+  subtitle.textContent = valentineWeek[key].subtitle;
+  message.textContent = valentineWeek[key].message;
+  shayari.textContent = valentineWeek[key].shayari;
+}else{
+  subtitle.textContent = normalContent.subtitle;
+  message.textContent = normalContent.message;
+  shayari.textContent = normalContent.shayari;
 }
 </script>
 
