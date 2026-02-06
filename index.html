@@ -5,7 +5,8 @@
 <title>Welcome to Our World 🌙</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&family=Dancing+Script:wght@500;600&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -13,114 +14,147 @@
 body{
   min-height:100vh;
   font-family:'Poppins',sans-serif;
-  overflow:hidden;
-  color:#f3eaff;
+  color:#eef3ff;
+  overflow-x:hidden;
   background:
-    radial-gradient(circle at 50% 20%, rgba(255,255,255,.15), transparent 40%),
-    radial-gradient(circle at 20% 80%, rgba(160,120,255,.25), transparent 45%),
-    linear-gradient(120deg,#0b0f2b,#1a1440,#2a175a);
+    radial-gradient(circle at 50% 20%, rgba(255,255,255,.18), transparent 35%),
+    radial-gradient(circle at 20% 80%, rgba(120,140,255,.25), transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(80,120,200,.2), transparent 45%),
+    linear-gradient(180deg,#050814,#0b1230,#0e1b3f,#070a1a);
 }
 
-/* stars */
+/* Stars (depth layers) */
 .star{
-  position:absolute;
+  position:fixed;
   width:2px;height:2px;
   background:white;
   border-radius:50%;
-  opacity:.8;
-  animation:twinkle 3s infinite ease-in-out alternate;
+  opacity:.9;
+  animation:twinkle 3s infinite alternate;
 }
+.star.far{opacity:.4}
 @keyframes twinkle{
   from{opacity:.3}
   to{opacity:1}
 }
 
-/* moon */
+/* Moon */
 .moon{
-  position:absolute;
-  top:8%;
+  position:fixed;
+  top:6%;
   right:12%;
-  width:140px;
-  height:140px;
+  width:140px;height:140px;
   border-radius:50%;
-  background:radial-gradient(circle at 30% 30%, #fff, #dcd6ff);
-  box-shadow:0 0 80px rgba(220,214,255,.6);
+  background:radial-gradient(circle at 30% 30%, #fff, #cfd9ff);
+  box-shadow:
+    0 0 40px rgba(220,230,255,.6),
+    0 0 120px rgba(180,200,255,.4);
 }
 
-/* wrapper */
-.wrapper{
+/* Angel */
+.angel{
+  position:fixed;
+  top:14%;
+  left:50%;
+  transform:translateX(-50%);
+  opacity:.35;
+  animation:floatAngel 8s ease-in-out infinite;
+}
+@keyframes floatAngel{
+  0%,100%{transform:translate(-50%,0)}
+  50%{transform:translate(-50%,12px)}
+}
+.angel svg{
+  width:180px;
+  stroke:#e9ecff;
+  stroke-width:2;
+  fill:none;
+  stroke-linecap:round;
+  filter:drop-shadow(0 0 18px rgba(200,210,255,.6));
+}
+
+/* Layout */
+.section{
   min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:40px 20px;
-  position:relative;
+  padding:40px 16px;
 }
 
-/* glass card */
-.intro{
+.card{
+  width:100%;
   max-width:900px;
-  background:rgba(255,255,255,.08);
+  background:rgba(255,255,255,.06);
   backdrop-filter:blur(18px);
-  border-radius:40px;
-  padding:60px 50px;
-  box-shadow:0 40px 120px rgba(0,0,0,.6);
-  animation:fadeUp 2.2s ease;
-}
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(40px)}
-  to{opacity:1;transform:translateY(0)}
+  border-radius:36px;
+  padding:50px 30px;
+  box-shadow:0 40px 120px rgba(0,0,0,.7);
 }
 
-.title{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(2.6em,6vw,3.4em);
-  text-align:center;
-  margin-bottom:14px;
-}
-
-.date{
-  text-align:center;
-  letter-spacing:4px;
-  opacity:.8;
-  margin-bottom:30px;
-}
-
-/* walking couple */
+/* Walking together */
 .walk-wrap{
   position:relative;
   height:140px;
-  margin-bottom:30px;
   overflow:hidden;
+  margin-bottom:30px;
 }
-
 .walk{
   position:absolute;
   left:-40%;
   width:260px;
-  animation:walk 18s linear infinite;
+  animation:walk 20s linear infinite;
 }
-
 @keyframes walk{
   from{left:-40%}
   to{left:110%}
 }
-
 .walk circle,.walk line,.walk path{
-  stroke:#f3eaff;
+  stroke:#eef3ff;
   stroke-width:3;
   fill:none;
   stroke-linecap:round;
 }
 
-/* text */
-.text{
-  font-size:clamp(1.1em,3.5vw,1.35em);
+/* Text */
+.title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.4em,6vw,3.2em);
+  text-align:center;
+  margin-bottom:10px;
+}
+.day{
+  text-align:center;
+  letter-spacing:3px;
+  opacity:.8;
+  margin-bottom:28px;
+}
+.message{
+  font-size:clamp(1.05em,3.5vw,1.3em);
   line-height:2;
   white-space:pre-line;
 }
+.shayari{
+  margin-top:30px;
+  padding-left:18px;
+  border-left:3px solid rgba(255,255,255,.4);
+  font-family:'Dancing Script',cursive;
+  font-size:1.6em;
+  opacity:.9;
+}
+.signature{
+  margin-top:40px;
+  text-align:right;
+  font-family:'Dancing Script',cursive;
+  font-size:1.4em;
+  opacity:.9;
+}
 
-/* stars generate */
+@media(max-width:600px){
+  .moon{width:90px;height:90px}
+  .angel svg{width:130px}
+  .card{padding:40px 22px}
+}
 </style>
 </head>
 
@@ -128,10 +162,22 @@ body{
 
 <div class="moon"></div>
 
+<!-- Guardian Angel -->
+<div class="angel">
+  <svg viewBox="0 0 200 140">
+    <!-- wings -->
+    <path d="M30 70 q40 -60 70 0"/>
+    <path d="M170 70 q-40 -60 -70 0"/>
+    <!-- body -->
+    <line x1="100" y1="60" x2="100" y2="110"/>
+    <circle cx="100" cy="50" r="8"/>
+  </svg>
+</div>
+
 <script>
-for(let i=0;i<60;i++){
+for(let i=0;i<90;i++){
   const s=document.createElement("div");
-  s.className="star";
+  s.className="star"+(Math.random()>.6?" far":"");
   s.style.left=Math.random()*100+"vw";
   s.style.top=Math.random()*100+"vh";
   s.style.animationDuration=(2+Math.random()*3)+"s";
@@ -139,8 +185,8 @@ for(let i=0;i<60;i++){
 }
 </script>
 
-<div class="wrapper">
-  <div class="intro">
+<div class="section">
+  <div class="card">
 
     <div class="walk-wrap">
       <svg class="walk" viewBox="0 0 260 140">
@@ -151,7 +197,6 @@ for(let i=0;i<60;i++){
         <line x1="90" y1="65" x2="110" y2="85"/>
         <line x1="90" y1="90" x2="78" y2="130"/>
         <line x1="90" y1="90" x2="102" y2="130"/>
-
         <!-- girl -->
         <circle cx="150" cy="40" r="10"/>
         <path d="M140 40 q10 -16 20 0"/>
@@ -163,28 +208,47 @@ for(let i=0;i<60;i++){
       </svg>
     </div>
 
-    <div class="title">Welcome to Our World</div>
-    <div class="date">27 • FEB • 2025</div>
-
-    <div class="text">
-docu,
-
-raat shor nahi karti,
-bas saath rehti hai.
-
-Aur shayad isi liye
-tumhari presence
-meri zindagi ko itna sukoon deti hai.
-
-27 February 2025
-sirf ek din nahi,
-wo pal tha jab
-main akela chalna chhod kar
-saath chalne laga.
-    </div>
+    <div class="title" id="title"></div>
+    <div class="day" id="day"></div>
+    <div class="message" id="msg"></div>
+    <div class="shayari" id="shayari"></div>
+    <div class="signature">— mumu</div>
 
   </div>
 </div>
+
+<script>
+const days={
+ "02-14":{
+  t:"❤️ Valentine’s Night",
+  m:`docu,
+is raat ke jaise hi
+mera pyaar shor nahi karta,
+bas tumhare saath rehta hai.`,
+  s:`Khuda se zyada kuch nahi manga,
+bas tumhara saath manga.`
+ }
+};
+
+const today=new Date();
+const key=String(today.getMonth()+1).padStart(2,"0")+"-"+String(today.getDate()).padStart(2,"0");
+
+if(days[key]){
+  title.textContent=days[key].t;
+  msg.textContent=days[key].m;
+  shayari.textContent=days[key].s;
+}else{
+  title.textContent="🌙 Everyday Under the Same Sky";
+  day.textContent="Always";
+  msg.textContent=`27 February 2025 ke baad
+meri zindagi ka har raasta
+tumhare saath jud gaya hai.`;
+  shayari.textContent=`Jo upar hai,
+wo bhi shayad
+hume saath dekh kar
+muskura raha hoga.`;
+}
+</script>
 
 </body>
 </html>
