@@ -14,26 +14,64 @@ body{
   min-height:100vh;
   font-family:'Poppins',sans-serif;
   color:#eef2ff;
+  overflow-x:hidden;
+  transition:background 1.5s ease;
+}
+
+/* default night */
+body.night{
   background:
     radial-gradient(circle at 50% 15%, rgba(255,255,255,.14), transparent 35%),
     linear-gradient(180deg,#070a1a,#0c1433,#0b1230,#070a1a);
-  overflow-x:hidden;
 }
+
+/* Rose Day */
+body.rose{
+  background:linear-gradient(180deg,#3a0b1f,#6b1d3a,#2b0616);
+}
+
+/* Propose Day */
+body.propose{
+  background:linear-gradient(180deg,#120c2c,#2b1f5c,#120c2c);
+}
+
+/* Chocolate Day */
+body.choco{
+  background:linear-gradient(180deg,#2b170f,#4a2c1d,#2b170f);
+}
+
+/* Teddy Day */
+body.teddy{
+  background:linear-gradient(180deg,#3a2e2a,#6a5148,#3a2e2a);
+}
+
+/* Promise Day */
+body.promise{
+  background:linear-gradient(180deg,#0d1f2d,#1f3b4d,#0d1f2d);
+}
+
+/* Hug Day */
+body.hug{
+  background:linear-gradient(180deg,#3a1f2a,#6a3b4d,#3a1f2a);
+}
+
+/* Kiss Day */
+body.kiss{
+  background:linear-gradient(180deg,#2a0d18,#5c1f3b,#2a0d18);
+}
+
+/* Valentine Day */
+body.valentine{
+  background:linear-gradient(180deg,#3a0000,#7a0000,#3a0000);
+}
+
+/* vignette */
 body::after{
   content:'';
   position:fixed;
   inset:0;
   pointer-events:none;
   background:radial-gradient(circle at center, transparent 60%, rgba(0,0,0,.45));
-}
-
-/* stars */
-.star{
-  position:fixed;
-  width:2px;height:2px;
-  background:white;
-  border-radius:50%;
-  opacity:.35;
 }
 
 /* moon */
@@ -65,32 +103,6 @@ body::after{
   box-shadow:0 30px 90px rgba(0,0,0,.6);
 }
 
-/* walking couple */
-.walk-wrap{
-  position:relative;
-  height:120px;
-  overflow:hidden;
-  margin-bottom:26px;
-}
-.walk{
-  position:absolute;
-  left:-40%;
-  width:240px;
-  animation:walk 30s linear infinite;
-}
-@keyframes walk{
-  0%{left:-40%}
-  45%{left:35%}
-  65%{left:35%}
-  100%{left:110%}
-}
-.walk circle,.walk line,.walk path{
-  stroke:#eef2ff;
-  stroke-width:3;
-  fill:none;
-  stroke-linecap:round;
-}
-
 /* text */
 .title{
   font-family:'Playfair Display',serif;
@@ -103,7 +115,7 @@ body::after{
 .subtitle{
   text-align:center;
   letter-spacing:2px;
-  opacity:.75;
+  opacity:.8;
   margin-bottom:26px;
 }
 .message{
@@ -117,213 +129,81 @@ body::after{
   border-left:3px solid rgba(255,255,255,.35);
   font-family:'Dancing Script',cursive;
   font-size:1.5em;
-  opacity:.9;
 }
 .signature{
   margin-top:36px;
   text-align:right;
   font-family:'Dancing Script',cursive;
   font-size:1.3em;
-  opacity:.85;
 }
 
-@media(max-width:600px){
-  .moon{width:90px;height:90px}
-  .card{padding:40px 22px}
+.symbol{
+  position:fixed;
+  top:16%;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:48px;
+  animation:float 5s ease-in-out infinite;
+}
+@keyframes float{
+  0%{transform:translate(-50%,0)}
+  50%{transform:translate(-50%,-15px)}
+  100%{transform:translate(-50%,0)}
 }
 </style>
 </head>
 
-<body>
+<body class="night">
 
 <div class="moon"></div>
 
-<script>
-for(let i=0;i<80;i++){
-  const s=document.createElement("div");
-  s.className="star";
-  s.style.left=Math.random()*100+"vw";
-  s.style.top=Math.random()*100+"vh";
-  document.body.appendChild(s);
-}
-</script>
-
 <div class="section">
   <div class="card">
-
-    <div class="walk-wrap">
-      <svg class="walk" viewBox="0 0 260 140">
-        <circle cx="90" cy="40" r="10"/>
-        <line x1="90" y1="50" x2="90" y2="90"/>
-        <line x1="90" y1="65" x2="70" y2="85"/>
-        <line x1="90" y1="65" x2="110" y2="85"/>
-        <line x1="90" y1="90" x2="78" y2="130"/>
-        <line x1="90" y1="90" x2="102" y2="130"/>
-
-        <circle cx="150" cy="40" r="10"/>
-        <path d="M140 40 q10 -16 20 0"/>
-        <line x1="150" y1="50" x2="150" y2="88"/>
-        <line x1="150" y1="65" x2="130" y2="85"/>
-        <line x1="150" y1="65" x2="170" y2="85"/>
-        <line x1="150" y1="88" x2="132" y2="130"/>
-        <line x1="150" y1="88" x2="168" y2="130"/>
-      </svg>
-    </div>
-
     <div class="title">DOCU — MY WORLD</div>
     <div class="subtitle" id="subtitle"></div>
     <div class="message" id="message"></div>
     <div class="shayari" id="shayari"></div>
     <div class="signature">— mumu</div>
-
   </div>
 </div>
 
 <script>
-/* ===== CONTENT SYSTEM ===== */
-
-const normalContent = {
-  subtitle: "Where my heart feels calm.",
-  message: `docu,
-
-I don’t love you loudly.
-I love you sincerely.
-
-Tumhari presence meri life me
-kisi excitement ki tarah nahi,
-balki ek stability ki tarah aayi hai —
-jo dheere-dheere
-sab kuch apni jagah le aati hai.
-
-Main tumhare saath
-perfect moments nahi,
-real moments chahta hoon.
-
-Bas saath.
-Bas tum.`,
-  shayari: `Mohabbat ko proof ki zarurat nahi hoti,
-wo bas mehsoos hoti hai.`
+const days = {
+  "02-07":{cls:"rose", sym:"🌹", sub:"Rose Day"},
+  "02-08":{cls:"propose", sym:"💌", sub:"Propose Day"},
+  "02-09":{cls:"choco", sym:"🍫", sub:"Chocolate Day"},
+  "02-10":{cls:"teddy", sym:"🧸", sub:"Teddy Day"},
+  "02-11":{cls:"promise", sym:"🤝", sub:"Promise Day"},
+  "02-12":{cls:"hug", sym:"🤗", sub:"Hug Day"},
+  "02-13":{cls:"kiss", sym:"💋", sub:"Kiss Day"},
+  "02-14":{cls:"valentine", sym:"❤️", sub:"Valentine’s Day"}
 };
 
-const valentineWeek = {
-  "02-07": {
-    subtitle:"Rose Day",
-    message:`docu,
-
-Aaj rose dene ka din hai,
-par jo feeling tumhari ek smile se aati hai,
-wo kisi flower se match nahi hoti.
-
-You make things bloom,
-without trying.`,
-    shayari:`Kuch phool haathon me nahi,
-dil me khilte hain.`
-  },
-  "02-08": {
-    subtitle:"Propose Day",
-    message:`docu,
-
-This is not a proposal,
-this is a choice.
-
-Roz tumhe choose karna,
-bina pressure,
-bina drama —
-sirf dil se.`,
-    shayari:`Faisle jab dil se ho,
-toh shabd khud kam pad jaate hain.`
-  },
-  "02-09": {
-    subtitle:"Chocolate Day",
-    message:`docu,
-
-Sweet things remind me of you.
-Not because you are sweet,
-but because you make everything
-feel lighter.`,
-    shayari:`Kuch mithaas saath rehne se aati hai.`
-  },
-  "02-10": {
-    subtitle:"Teddy Day",
-    message:`docu,
-
-Comfort is rare.
-And with you,
-comfort feels natural.
-
-Jaise sab theek ho,
-sirf paas hone se.`,
-    shayari:`Sukoon aksar shabd nahi hota.`
-  },
-  "02-11": {
-    subtitle:"Promise Day",
-    message:`docu,
-
-I won’t promise perfection.
-I promise honesty.
-
-Jo hoon,
-jaise hoon,
-tumhare saath.`,
-    shayari:`Sacchai ke saath chalna
-hi sabse bada vaada hota hai.`
-  },
-  "02-12": {
-    subtitle:"Hug Day",
-    message:`docu,
-
-Some days don’t need words.
-They need closeness.
-
-Tumhare paas hona,
-waisa hi lagta hai.`,
-    shayari:`Baahon ka ehsaas
-seedha dil tak jaata hai.`
-  },
-  "02-13": {
-    subtitle:"Kiss Day",
-    message:`docu,
-
-This day is not about a kiss.
-It’s about that moment
-when everything feels right,
-without explanation.`,
-    shayari:`Kuch lamhe
-chup-chaap hi gehre ho jaate hain.`
-  },
-  "02-14": {
-    subtitle:"Valentine’s Day",
-    message:`docu,
-
-You are not my Valentine.
-You are my constant.
-
-And loving you
-is the easiest choice
-I’ve ever made.`,
-    shayari:`Mohabbat ek din nahi hoti,
-wo saath chalti hai.`
-  }
-};
-
-/* ===== DATE LOGIC ===== */
 const today = new Date();
-// const today = new Date("2026-02-14"); // test mode
+// const today = new Date("2026-02-14"); // test
+const key = String(today.getMonth()+1).padStart(2,"0")+"-"+String(today.getDate()).padStart(2,"0");
 
-const key =
-  String(today.getMonth()+1).padStart(2,"0") +
-  "-" +
-  String(today.getDate()).padStart(2,"0");
+if(days[key]){
+  document.body.className = days[key].cls;
+  document.getElementById("subtitle").innerText = days[key].sub;
 
-if(valentineWeek[key]){
-  subtitle.textContent = valentineWeek[key].subtitle;
-  message.textContent = valentineWeek[key].message;
-  shayari.textContent = valentineWeek[key].shayari;
+  const s=document.createElement("div");
+  s.className="symbol";
+  s.innerText=days[key].sym;
+  document.body.appendChild(s);
 }else{
-  subtitle.textContent = normalContent.subtitle;
-  message.textContent = normalContent.message;
-  shayari.textContent = normalContent.shayari;
+  document.getElementById("subtitle").innerText="Where my heart feels at home.";
 }
+
+document.getElementById("message").innerText=`docu,
+
+tum meri zindagi ka
+sabse khoobsurat hissa ho.
+Ye jagah sirf yaadon ke liye nahi,
+ehsaason ke liye hai.`;
+
+document.getElementById("shayari").innerText=`Mohabbat shor nahi karti,
+wo bas saath chalti hai.`;
 </script>
 
 </body>
