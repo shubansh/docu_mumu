@@ -33,8 +33,6 @@ body{
   animation:fadeUp 1.6s ease;
   transition:background 1.5s ease,color 1.5s ease;
 }
-
-/* Text modes */
 .card.light{
   color:#ffffff;
   background:rgba(0,0,0,0.25);
@@ -47,10 +45,7 @@ body{
 }
 
 /* Header */
-.header{
-  position:relative;
-  margin-bottom:22px;
-}
+.header{position:relative;margin-bottom:22px;}
 .header h1{
   font-family:'Noto Serif KR',serif;
   font-size:clamp(1.9rem,5vw,2.5rem);
@@ -68,92 +63,37 @@ body{
 }
 
 /* Sections */
-.day{
-  font-size:clamp(0.8rem,2.6vw,0.95rem);
-  letter-spacing:2px;
-  opacity:0.85;
-  margin-bottom:14px;
-}
-.message{
-  font-size:clamp(0.95rem,3.2vw,1.1rem);
-  line-height:1.9;
-  margin-bottom:16px;
-}
-.feeling{
-  font-style:italic;
-  font-size:clamp(0.85rem,2.7vw,0.95rem);
-  opacity:0.85;
-  margin-bottom:20px;
-}
-
-/* Song memory */
-.song-line{
-  font-size:clamp(0.75rem,2.4vw,0.85rem);
-  opacity:0.7;
-  margin-bottom:18px;
-}
+.day{font-size:clamp(0.8rem,2.6vw,0.95rem);letter-spacing:2px;opacity:0.85;margin-bottom:14px;}
+.message{font-size:clamp(0.95rem,3.2vw,1.1rem);line-height:1.9;margin-bottom:16px;}
+.feeling{font-style:italic;font-size:clamp(0.85rem,2.7vw,0.95rem);opacity:0.85;margin-bottom:20px;}
+.song-line{font-size:clamp(0.75rem,2.4vw,0.85rem);opacity:0.7;margin-bottom:18px;}
 
 /* Hidden message */
 .hidden-wrap{margin:22px 0;}
 .lock{font-size:26px;opacity:0.7;}
-.lock-note{
-  font-size:clamp(0.7rem,2.4vw,0.85rem);
-  opacity:0.7;
-  margin-top:6px;
-  line-height:1.6;
-}
+.lock-note{font-size:clamp(0.7rem,2.4vw,0.85rem);opacity:0.7;margin-top:6px;line-height:1.6;}
 .hidden-text{
-  margin-top:15px;
-  font-size:clamp(0.9rem,3vw,1rem);
-  line-height:1.9;
-  opacity:0;
-  max-height:0;
-  overflow:hidden;
+  margin-top:15px;font-size:clamp(0.9rem,3vw,1rem);
+  line-height:1.9;opacity:0;max-height:0;overflow:hidden;
   transition:all 1.2s ease;
 }
 .hidden-wrap.unlocked .lock,
 .hidden-wrap.unlocked .lock-note{display:none;}
-.hidden-wrap.unlocked .hidden-text{
-  opacity:1;
-  max-height:500px;
-}
+.hidden-wrap.unlocked .hidden-text{opacity:1;max-height:500px;}
 
 /* Footer */
-.footer{
-  font-size:clamp(0.75rem,2.5vw,0.9rem);
-  opacity:0.8;
-}
+.footer{font-size:clamp(0.75rem,2.5vw,0.9rem);opacity:0.8;}
 
-/* Music button */
+/* Music */
 #musicToggle{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  width:46px;
-  height:46px;
-  border-radius:50%;
-  background:rgba(255,255,255,0.25);
-  backdrop-filter:blur(10px);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:20px;
-  cursor:pointer;
-  z-index:999;
-  transition:transform 0.3s ease;
+  position:fixed;bottom:20px;right:20px;width:46px;height:46px;
+  border-radius:50%;background:rgba(255,255,255,0.25);
+  backdrop-filter:blur(10px);display:flex;
+  align-items:center;justify-content:center;
+  font-size:20px;cursor:pointer;z-index:999;
 }
-#musicToggle:hover{transform:scale(1.1);}
+.float{position:absolute;top:-10vh;font-size:clamp(14px,4vw,20px);opacity:0.6;animation:fall linear infinite;}
 
-/* Floating */
-.float{
-  position:absolute;
-  top:-10vh;
-  font-size:clamp(14px,4vw,20px);
-  opacity:0.6;
-  animation:fall linear infinite;
-}
-
-/* Animations */
 @keyframes heartbeat{50%{transform:scale(1.2);}}
 @keyframes slowBeat{50%{transform:translateX(-50%) scale(1.1);}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(25px);}to{opacity:1;}}
@@ -209,7 +149,6 @@ body{
   </div>
 </div>
 
-<!-- Music -->
 <audio id="bgMusic" loop preload="none">
   <source src="./music.mp3" type="audio/mpeg">
 </audio>
@@ -217,14 +156,62 @@ body{
 
 <script>
 const days=[
-{bg:"linear-gradient(135deg,#fbc2eb,#a6c1ee)",mode:"dark",title:"ROSE DAY",msg:"DOCU, I didn’t plan this feeling. It grew quietly — somewhere between normal conversations and moments that stayed.",feel:"Today, I felt calm… because you exist."},
-{bg:"linear-gradient(135deg,#fad0c4,#ff9a9e)",mode:"dark",title:"PROPOSE DAY",msg:"DOCU, this isn’t about asking for anything. I just wanted you to know that having you in my life feels right.",feel:"Some feelings don’t need big words."},
-{bg:"linear-gradient(135deg,#f6d365,#fda085)",mode:"dark",title:"CHOCOLATE DAY",msg:"DOCU, being around you feels easy — like something sweet that stays without effort.",feel:"Soft moments matter more than grand ones."},
-{bg:"linear-gradient(135deg,#cfd9df,#e2ebf0)",mode:"dark",title:"TEDDY DAY",msg:"DOCU, if life ever feels heavy, I hope you know there’s someone who wants to be your quiet comfort.",feel:"Comfort is a kind of love."},
-{bg:"linear-gradient(135deg,#a1c4fd,#c2e9fb)",mode:"dark",title:"PROMISE DAY",msg:"DOCU, I won’t promise perfection. But I can promise honesty, effort, and showing up.",feel:"Consistency matters."},
-{bg:"linear-gradient(135deg,#fbc8d4,#9795f0)",mode:"light",title:"HUG DAY",msg:"DOCU, some things don’t need explanations. A hug, a presence, a moment of feeling understood.",feel:"Feeling safe is rare."},
-{bg:"linear-gradient(135deg,#ffecd2,#fcb69f)",mode:"dark",title:"KISS DAY",msg:"DOCU, closeness with you doesn’t feel rushed. It feels natural.",feel:"Some connections don’t need proof."},
-{bg:"linear-gradient(135deg,#ff758c,#ff7eb3)",mode:"light",title:"VALENTINE’S DAY",msg:"DOCU, this isn’t about one day. It’s about choosing someone in small, quiet ways — and meaning it.",feel:"I hope this made you smile, even a little."}
+{
+ bg:"linear-gradient(135deg,#fbc2eb,#a6c1ee)",
+ mode:"dark",
+ title:"ROSE DAY",
+ msg:"DOCU, I didn’t plan this feeling. It grew quietly — somewhere between normal conversations and moments that stayed.",
+ feel:"Today, I felt calm… because you exist."
+},
+{
+ bg:"linear-gradient(135deg,#fad0c4,#ff9a9e)",
+ mode:"dark",
+ title:"PROPOSE DAY",
+ msg:"DOCU, this is me being honest and clear. I don’t just like you — I see you as someone I want in my life, seriously. If I ever take a step forward, it’s with you in mind.",
+ feel:"This is not a moment… it’s an intention."
+},
+{
+ bg:"linear-gradient(135deg,#f6d365,#fda085)",
+ mode:"dark",
+ title:"CHOCOLATE DAY",
+ msg:"DOCU, being around you feels easy — like something sweet that stays without effort.",
+ feel:"Soft moments matter more than grand ones."
+},
+{
+ bg:"linear-gradient(135deg,#cfd9df,#e2ebf0)",
+ mode:"dark",
+ title:"TEDDY DAY",
+ msg:"DOCU, if life ever feels heavy, I hope you know there’s someone who wants to be your quiet comfort.",
+ feel:"Comfort is a kind of love."
+},
+{
+ bg:"linear-gradient(135deg,#a1c4fd,#c2e9fb)",
+ mode:"dark",
+ title:"PROMISE DAY",
+ msg:"DOCU, I promise honesty, respect, and consistency. I promise to show up, not just when it’s easy, but when it matters.",
+ feel:"I believe in staying."
+},
+{
+ bg:"linear-gradient(135deg,#fbc8d4,#9795f0)",
+ mode:"light",
+ title:"HUG DAY",
+ msg:"DOCU, some things don’t need explanations. A hug, a presence, a moment of feeling understood.",
+ feel:"Feeling safe is rare."
+},
+{
+ bg:"linear-gradient(135deg,#ffecd2,#fcb69f)",
+ mode:"dark",
+ title:"KISS DAY",
+ msg:"DOCU, closeness with you doesn’t feel rushed. It feels natural.",
+ feel:"Some connections don’t need proof."
+},
+{
+ bg:"linear-gradient(135deg,#ff758c,#ff7eb3)",
+ mode:"light",
+ title:"VALENTINE’S DAY",
+ msg:"DOCU, this is what I want you to know clearly — I’m not here for passing feelings. I see you as someone I want to build a life with, slowly, honestly, and seriously.",
+ feel:"This is me choosing you."
+}
 ];
 
 function updateContent(){
@@ -248,18 +235,11 @@ function updateContent(){
 updateContent();
 setInterval(updateContent,60000);
 
-/* Music */
 const music=document.getElementById("bgMusic");
 const toggle=document.getElementById("musicToggle");
-music.volume=0.08;
-let playing=false;
-toggle.onclick=()=>{
- if(!playing){music.play();toggle.innerText="🔊";}
- else{music.pause();toggle.innerText="🎵";}
- playing=!playing;
-};
+music.volume=0.08;let playing=false;
+toggle.onclick=()=>{playing?music.pause():music.play();toggle.innerText=playing?"🎵":"🔊";playing=!playing;};
 
-/* Floating hearts */
 for(let i=0;i<14;i++){
  const el=document.createElement("div");
  el.className="float";
