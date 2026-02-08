@@ -86,7 +86,7 @@ body{
   margin-bottom:20px;
 }
 
-/* Song memory line */
+/* Song memory */
 .song-line{
   font-size:clamp(0.75rem,2.4vw,0.85rem);
   opacity:0.7;
@@ -172,12 +172,10 @@ body{
   <div class="message" id="dayMessage"></div>
   <div class="feeling" id="dayFeeling"></div>
 
-  <!-- Song memory -->
   <div class="song-line">
     “You sang this once… and it stayed with me.”
   </div>
 
-  <!-- Hidden Valentine Message -->
   <div class="hidden-wrap" id="hiddenWrap">
     <div class="lock">🔒</div>
     <div class="lock-note">
@@ -212,8 +210,8 @@ body{
 </div>
 
 <!-- Music -->
-<audio id="bgMusic" loop>
-  <source src="music.mp3" type="audio/mpeg">
+<audio id="bgMusic" loop preload="none">
+  <source src="./music.mp3" type="audio/mpeg">
 </audio>
 <div id="musicToggle">🎵</div>
 
@@ -247,11 +245,10 @@ function updateContent(){
    hiddenWrap.classList.add("unlocked");
  }
 }
-
 updateContent();
 setInterval(updateContent,60000);
 
-/* Music control */
+/* Music */
 const music=document.getElementById("bgMusic");
 const toggle=document.getElementById("musicToggle");
 music.volume=0.08;
@@ -262,7 +259,7 @@ toggle.onclick=()=>{
  playing=!playing;
 };
 
-/* Floating */
+/* Floating hearts */
 for(let i=0;i<14;i++){
  const el=document.createElement("div");
  el.className="float";
